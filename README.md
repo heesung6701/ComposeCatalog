@@ -9,6 +9,7 @@ Annotation-based Compose catalog and auto-navigation framework skeleton.
 - `compose-atlas-navigation`: Navigation Compose adapter via `AtlasNavHost`.
 - `compose-atlas-ksp`: KSP processor that validates annotated composables and generates `GeneratedAtlasRegistry`.
 - `sample-app`: Android sample app demonstrating generated registry + auto navigation.
+- `demo-app`: richer demo app that consumes the library modules and exposes multiple Compose Catalog style component test screens.
 
 ## MVP usage
 
@@ -51,6 +52,7 @@ MVP 1 skeleton:
 - Catalog UI with grouping/sorting/search field
 - Navigation Compose integration
 - Sample screens
+- Demo app with component-by-component catalog screens
 
 Future phases:
 

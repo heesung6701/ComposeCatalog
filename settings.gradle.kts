@@ -22,4 +22,5 @@ include(
     ":compose-atlas-navigation",
     ":compose-atlas-ksp",
     ":sample-app",
+    ":demo-app",
 )
