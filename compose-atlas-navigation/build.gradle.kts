@@ -18,6 +18,10 @@ android {
     }
 }
 
+kotlin {
+    explicitApi()
+}
+
 dependencies {
     api(project(":compose-atlas-runtime"))
     implementation(platform(libs.androidx.compose.bom))

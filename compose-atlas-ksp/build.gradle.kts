@@ -3,6 +3,7 @@ plugins {
 }
 
 kotlin {
+    explicitApi()
     jvmToolchain(17)
 }
 
