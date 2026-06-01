@@ -28,7 +28,10 @@ kotlin {
 dependencies {
     api(project(":compose-atlas-runtime"))
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.runtime)
-    api(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.navigation3.navigation3.runtime)
+    implementation(libs.androidx.navigation3.navigation3.ui)
     testImplementation(libs.junit)
 }

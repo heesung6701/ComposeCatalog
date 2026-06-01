@@ -6,7 +6,7 @@ Annotation-based Compose catalog and auto-navigation framework skeleton.
 
 - `compose-atlas-annotation`: `@AtlasScreen` source-retention annotation.
 - `compose-atlas-runtime`: runtime model, catalog UI, and metadata search helpers.
-- `compose-atlas-navigation`: Navigation Compose adapter via `AtlasNavHost`.
+- `compose-atlas-navigation`: Navigation3 adapter via `AtlasNavHost`.
 - `compose-atlas-ksp`: KSP processor that validates annotated composables and generates `GeneratedAtlasRegistry`.
 - `compose-atlas-bom`: Maven BOM that aligns all ComposeAtlas artifact versions.
 - `sample-app`: Android sample app demonstrating generated registry + auto navigation.
@@ -105,7 +105,7 @@ MVP 1 skeleton:
 - `@AtlasScreen`
 - KSP registry generation
 - Catalog UI with multi-depth group browsing, sorting, and search field
-- Navigation Compose integration with generated group routes
+- Navigation3 integration with generated group routes
 - Sample screens
 - Demo app with component-by-component catalog screens
 
