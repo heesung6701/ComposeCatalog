@@ -21,6 +21,7 @@ include(
     ":compose-atlas-runtime",
     ":compose-atlas-navigation",
     ":compose-atlas-ksp",
+    ":compose-atlas-bom",
     ":sample-app",
     ":demo-app",
 )

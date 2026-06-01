@@ -8,8 +8,44 @@ Annotation-based Compose catalog and auto-navigation framework skeleton.
 - `compose-atlas-runtime`: runtime model, catalog UI, and metadata search helpers.
 - `compose-atlas-navigation`: Navigation Compose adapter via `AtlasNavHost`.
 - `compose-atlas-ksp`: KSP processor that validates annotated composables and generates `GeneratedAtlasRegistry`.
+- `compose-atlas-bom`: Maven BOM that aligns all ComposeAtlas artifact versions.
 - `sample-app`: Android sample app demonstrating generated registry + auto navigation.
 - `demo-app`: richer demo app that consumes the library modules and exposes multiple Compose Catalog style component test screens.
+
+## Dependency setup
+
+Published artifacts share one version from `VERSION_NAME` in `gradle.properties`. Consumers can import the BOM once per dependency configuration and omit versions from individual artifacts:
+
+```kotlin
+dependencies {
+    implementation(platform("io.github.composecatalog:compose-atlas-bom:0.1.0"))
+    ksp(platform("io.github.composecatalog:compose-atlas-bom:0.1.0"))
+
+    implementation("io.github.composecatalog:compose-atlas-annotation")
+    implementation("io.github.composecatalog:compose-atlas-runtime")
+    implementation("io.github.composecatalog:compose-atlas-navigation")
+    ksp("io.github.composecatalog:compose-atlas-ksp")
+}
+```
+
+`ksp(...)` has its own configuration, so import the BOM there too when using the KSP processor.
+
+## Publishing
+
+All publishable modules use the same Maven coordinates group and version from `gradle.properties`:
+
+```properties
+GROUP=io.github.composecatalog
+VERSION_NAME=0.1.0-SNAPSHOT
+```
+
+Local publication verification:
+
+```bash
+./gradlew publishAllPublicationsToLocalBuildRepository
+```
+
+GitHub Actions publishes automatically to GitHub Packages when a `v*` tag is pushed, or manually through the `Publish` workflow with a version input. A tag like `v0.1.0` publishes artifacts as version `0.1.0`.
 
 ## MVP usage
 
