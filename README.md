@@ -45,7 +45,23 @@ Local publication verification:
 ./gradlew publishAllPublicationsToLocalBuildRepository
 ```
 
-GitHub Actions publishes automatically to GitHub Packages when a `v*` tag is pushed, or manually through the `Publish` workflow with a version input. A tag like `v0.1.0` publishes artifacts as version `0.1.0`.
+GitHub Actions publishes automatically to GitHub Packages and Maven Central when a `v*` tag is pushed, or manually through the `Publish` workflow with a version input. A tag like `v0.1.0` publishes artifacts as version `0.1.0`.
+
+Maven Central publishing requires these repository secrets:
+
+```text
+MAVEN_CENTRAL_USERNAME
+MAVEN_CENTRAL_PASSWORD
+SIGNING_IN_MEMORY_KEY
+SIGNING_IN_MEMORY_KEY_ID
+SIGNING_IN_MEMORY_KEY_PASSWORD
+```
+
+Manual Maven Central publication uses the same version override:
+
+```bash
+./gradlew publishAndReleaseToMavenCentral -PVERSION_NAME=0.1.0
+```
 
 ## MVP usage
 

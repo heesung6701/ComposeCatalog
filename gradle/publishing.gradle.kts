@@ -1,22 +1,12 @@
 import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.plugins.signing.SigningExtension
 
 apply(plugin = "maven-publish")
 apply(plugin = "signing")
+apply(plugin = "com.vanniktech.maven.publish")
 
 val mavenGroupId = providers.gradleProperty("GROUP").get()
 val mavenVersionName = providers.gradleProperty("VERSION_NAME").get()
-val pomName = providers.gradleProperty("POM_NAME").get()
-val pomDescription = providers.gradleProperty("POM_DESCRIPTION").get()
-val pomUrl = providers.gradleProperty("POM_URL").get()
-val pomLicenseName = providers.gradleProperty("POM_LICENSE_NAME").get()
-val pomLicenseUrl = providers.gradleProperty("POM_LICENSE_URL").get()
-val pomDeveloperId = providers.gradleProperty("POM_DEVELOPER_ID").get()
-val pomDeveloperName = providers.gradleProperty("POM_DEVELOPER_NAME").get()
-val pomScmUrl = providers.gradleProperty("POM_SCM_URL").get()
-val pomScmConnection = providers.gradleProperty("POM_SCM_CONNECTION").get()
-val pomScmDeveloperConnection = providers.gradleProperty("POM_SCM_DEVELOPER_CONNECTION").get()
 
 group = mavenGroupId
 version = mavenVersionName
@@ -42,31 +32,22 @@ extensions.configure<PublishingExtension>("publishing") {
             }
         }
     }
+}
 
-    publications.withType<MavenPublication>().configureEach {
-        pom {
-            name.set("$pomName ${project.name}")
-            description.set(pomDescription)
-            url.set(pomUrl)
-            licenses {
-                license {
-                    name.set(pomLicenseName)
-                    url.set(pomLicenseUrl)
-                }
-            }
-            developers {
-                developer {
-                    id.set(pomDeveloperId)
-                    name.set(pomDeveloperName)
-                }
-            }
-            scm {
-                url.set(pomScmUrl)
-                connection.set(pomScmConnection)
-                developerConnection.set(pomScmDeveloperConnection)
-            }
-        }
+val mavenPublishing = extensions.getByName("mavenPublishing")
+val publishToMavenCentralMethod = mavenPublishing.javaClass.methods
+    .firstOrNull { method ->
+        method.name == "publishToMavenCentral" &&
+            method.parameterCount == 1 &&
+            method.parameterTypes[0] == Boolean::class.javaPrimitiveType
     }
+    ?: mavenPublishing.javaClass.methods.first { method ->
+        method.name == "publishToMavenCentral" && method.parameterCount == 0
+    }
+if (publishToMavenCentralMethod.parameterCount == 1) {
+    publishToMavenCentralMethod.invoke(mavenPublishing, true)
+} else {
+    publishToMavenCentralMethod.invoke(mavenPublishing)
 }
 
 extensions.configure<SigningExtension>("signing") {
