@@ -49,8 +49,8 @@ MVP 1 skeleton:
 
 - `@AtlasScreen`
 - KSP registry generation
-- Catalog UI with grouping/sorting/search field
-- Navigation Compose integration
+- Catalog UI with multi-depth group browsing, sorting, and search field
+- Navigation Compose integration with generated group routes
 - Sample screens
 - Demo app with component-by-component catalog screens
 

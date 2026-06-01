@@ -22,17 +22,25 @@ import androidx.compose.ui.unit.dp
 public fun AtlasCatalogScreen(
     entries: List<AtlasEntry>,
     modifier: Modifier = Modifier,
+    title: String = "Compose Atlas",
+    groups: List<AtlasCatalogGroup> = emptyList(),
+    searchEntries: List<AtlasEntry> = entries,
+    onGroupSelected: (AtlasCatalogGroup) -> Unit = {},
     onEntrySelected: (AtlasEntry) -> Unit = {},
 ) {
     var query by remember { mutableStateOf("") }
-    val visibleEntries = remember(entries, query) {
-        AtlasSearchEngine.filter(entries, query)
+    val visibleEntries = remember(entries, searchEntries, query) {
+        val source = if (query.isBlank()) entries else searchEntries
+        AtlasSearchEngine.filter(source, query)
             .sortedWith(compareBy<AtlasEntry> { it.group }.thenBy { it.order }.thenBy { it.title })
+    }
+    val visibleGroups = remember(groups, query) {
+        if (query.isBlank()) groups.sortedBy { it.title } else emptyList()
     }
 
     Surface(modifier = modifier.fillMaxSize()) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Compose Atlas", style = MaterialTheme.typography.headlineSmall)
+            Text(text = title, style = MaterialTheme.typography.headlineSmall)
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it },
@@ -41,6 +49,19 @@ public fun AtlasCatalogScreen(
                 singleLine = true,
             )
             LazyColumn(modifier = Modifier.padding(top = 12.dp)) {
+                items(visibleGroups, key = { it.route }) { group ->
+                    Column(
+                        modifier = Modifier
+                            .clickable { onGroupSelected(group) }
+                            .padding(vertical = 8.dp),
+                    ) {
+                        Text(group.title, style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            text = "${group.childGroups.size} groups · ${group.allEntries().size} screens",
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+                }
                 items(visibleEntries, key = { it.route }) { entry ->
                     Column(
                         modifier = Modifier
@@ -60,3 +81,6 @@ public fun AtlasCatalogScreen(
         }
     }
 }
+
+public fun AtlasCatalogGroup.allEntries(): List<AtlasEntry> =
+    entries + childGroups.flatMap { it.allEntries() }

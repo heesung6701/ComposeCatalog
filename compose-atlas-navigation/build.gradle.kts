@@ -23,4 +23,5 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.runtime)
     api(libs.androidx.navigation.compose)
+    testImplementation(libs.junit)
 }
