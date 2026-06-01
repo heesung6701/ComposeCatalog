@@ -18,13 +18,13 @@ Published artifacts share one version from `VERSION_NAME` in `gradle.properties`
 
 ```kotlin
 dependencies {
-    implementation(platform("io.github.composecatalog:compose-atlas-bom:0.1.0"))
-    ksp(platform("io.github.composecatalog:compose-atlas-bom:0.1.0"))
+    implementation(platform("io.github.heesung6701.composecatalog:compose-atlas-bom:0.1.0"))
+    ksp(platform("io.github.heesung6701.composecatalog:compose-atlas-bom:0.1.0"))
 
-    implementation("io.github.composecatalog:compose-atlas-annotation")
-    implementation("io.github.composecatalog:compose-atlas-runtime")
-    implementation("io.github.composecatalog:compose-atlas-navigation")
-    ksp("io.github.composecatalog:compose-atlas-ksp")
+    implementation("io.github.heesung6701.composecatalog:compose-atlas-annotation")
+    implementation("io.github.heesung6701.composecatalog:compose-atlas-runtime")
+    implementation("io.github.heesung6701.composecatalog:compose-atlas-navigation")
+    ksp("io.github.heesung6701.composecatalog:compose-atlas-ksp")
 }
 ```
 
@@ -35,9 +35,11 @@ dependencies {
 All publishable modules use the same Maven coordinates group and version from `gradle.properties`:
 
 ```properties
-GROUP=io.github.composecatalog
+GROUP=io.github.heesung6701.composecatalog
 VERSION_NAME=0.1.0-SNAPSHOT
 ```
+
+The Maven group uses the GitHub-owner-backed namespace `io.github.heesung6701.composecatalog` for Maven Central namespace verification. Kotlin package names and Android namespaces remain under `io.github.composecatalog...` for now; those are source/API namespaces, not Maven coordinates.
 
 Local publication verification:
 
