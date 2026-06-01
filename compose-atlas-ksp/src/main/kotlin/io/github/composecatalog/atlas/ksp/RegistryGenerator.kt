@@ -28,7 +28,7 @@ public class RegistryGenerator(
         val packageName = "io.github.composecatalog.atlas.generated"
         val entriesCode = functions.joinToString(separator = ",\n") { function ->
             val title = function.atlasString("title").ifBlank { function.simpleName.asString() }
-            val group = function.atlasString("group")
+            val group = PackageGroupName.fromPackage(function.packageName.asString())
             val description = function.atlasString("description")
             val route = function.atlasString("route").ifBlank { function.defaultRoute() }
             val order = function.atlasInt("order")
@@ -76,13 +76,15 @@ private fun KSFunctionDeclaration.atlasInt(name: String): Int =
         .arguments.firstOrNull { it.name?.asString() == name }?.value as? Int ?: 0
 
 private fun KSFunctionDeclaration.defaultRoute(): String {
-    val packageParts = packageName.asString().split('.').takeLast(2)
+    val groupParts = PackageGroupName.fromPackage(packageName.asString())
+        .split('/')
+        .filter { it.isNotBlank() }
     val name = simpleName.asString()
         .removeSuffix("Screen")
         .removeSuffix("Demo")
         .replace(Regex("([a-z])([A-Z])"), "\$1-\$2")
         .lowercase()
-    return (packageParts + name).joinToString("/")
+    return (groupParts + name).joinToString("/")
 }
 
 private fun String.quote(): String = buildString {

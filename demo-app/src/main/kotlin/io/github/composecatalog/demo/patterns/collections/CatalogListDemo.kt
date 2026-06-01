@@ -1,4 +1,4 @@
-package io.github.composecatalog.demo.patterns
+package io.github.composecatalog.demo.patterns.collections
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,6 @@ import io.github.composecatalog.demo.components.DemoScaffold
 
 @AtlasScreen(
     title = "Catalog List",
-    group = "Patterns / Collections",
     description = "A screen that represents a component list inside a design-system catalog.",
     order = 40,
 )

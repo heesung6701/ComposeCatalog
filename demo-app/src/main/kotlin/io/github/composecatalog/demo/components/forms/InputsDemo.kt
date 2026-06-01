@@ -1,4 +1,8 @@
-package io.github.composecatalog.demo.components
+package io.github.composecatalog.demo.components.forms
+
+import io.github.composecatalog.demo.components.DemoScaffold
+import io.github.composecatalog.demo.components.DemoSpacing
+import io.github.composecatalog.demo.components.LabeledRow
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,7 +20,6 @@ import io.github.composecatalog.atlas.annotation.AtlasScreen
 
 @AtlasScreen(
     title = "Inputs",
-    group = "Components / Forms",
     description = "Text field and switch examples for form-state smoke testing.",
     order = 20,
 )

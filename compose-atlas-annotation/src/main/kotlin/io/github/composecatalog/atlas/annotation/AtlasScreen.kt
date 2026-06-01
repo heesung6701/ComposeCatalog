@@ -10,7 +10,6 @@ package io.github.composecatalog.atlas.annotation
 @Retention(AnnotationRetention.SOURCE)
 public annotation class AtlasScreen(
     val title: String = "",
-    val group: String = "",
     val description: String = "",
     val route: String = "",
     val order: Int = 0,

@@ -11,7 +11,6 @@ import io.github.composecatalog.atlas.annotation.AtlasScreen
 
 @AtlasScreen(
     title = "Text",
-    group = "Components/Display",
     description = "Typography preview sample",
     order = 20,
 )

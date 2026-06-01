@@ -1,4 +1,8 @@
-package io.github.composecatalog.demo.components
+package io.github.composecatalog.demo.components.surface
+
+import io.github.composecatalog.demo.components.ColumnWithPadding
+import io.github.composecatalog.demo.components.DemoScaffold
+import io.github.composecatalog.demo.components.DemoSpacing
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +17,6 @@ import io.github.composecatalog.atlas.annotation.AtlasScreen
 
 @AtlasScreen(
     title = "Cards",
-    group = "Components / Surfaces",
     description = "Surface and card samples that mimic a catalog detail page.",
     order = 30,
 )

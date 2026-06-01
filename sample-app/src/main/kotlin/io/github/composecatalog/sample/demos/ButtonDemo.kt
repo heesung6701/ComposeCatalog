@@ -11,7 +11,6 @@ import io.github.composecatalog.atlas.annotation.AtlasScreen
 
 @AtlasScreen(
     title = "Button",
-    group = "Components/Input",
     description = "Basic Material 3 button sample",
     order = 10,
 )

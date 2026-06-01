@@ -1,4 +1,6 @@
-package io.github.composecatalog.demo.components
+package io.github.composecatalog.demo.components.actions
+
+import io.github.composecatalog.demo.components.DemoScaffold
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +21,6 @@ import io.github.composecatalog.atlas.annotation.AtlasScreen
 
 @AtlasScreen(
     title = "Buttons",
-    group = "Components / Actions",
     description = "Common Material 3 button variants shown as a component test screen.",
     order = 10,
 )

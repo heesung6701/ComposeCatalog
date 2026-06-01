@@ -16,7 +16,6 @@ Annotation-based Compose catalog and auto-navigation framework skeleton.
 ```kotlin
 @AtlasScreen(
     title = "Button",
-    group = "Components/Input",
     description = "Basic Material 3 button sample",
 )
 @Composable
@@ -35,12 +34,14 @@ Then the app can host every registered screen:
 AtlasNavHost(registry = GeneratedAtlasRegistry)
 ```
 
-## Route convention
+## Route and group convention
 
-If `route` is omitted, the current MVP generates a route from the last two package segments plus the composable name without `Screen`/`Demo` suffix, for example:
+`group` is derived from package segments after the app root package. If `route` is omitted, the route uses that package-derived group plus the composable name without the `Screen`/`Demo` suffix, for example:
 
 ```text
-io.github.composecatalog.sample.demos.ButtonDemo -> sample/demos/button
+io.github.composecatalog.demo.components.surface.CardsDemo
+  group -> components/surface
+  route -> components/surface/cards
 ```
 
 ## Current scope
